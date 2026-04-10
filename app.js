@@ -5,8 +5,8 @@ let default_city = "Karachi";
 let temp_box = document.querySelector(".temp_box")
 
 const api_key = "711bc8780457bd2f4156dc13cd40d08a";
-let latitude;
-let longitude;
+// let latitude;
+// let longitude;
 
 let search_btn = document.getElementById("input_search_btn");
 let error_message = document.querySelector(".city_not_found_err");
@@ -15,7 +15,9 @@ let error_message = document.querySelector(".city_not_found_err");
 let afterDay01 = document.querySelector(".AfterDay01");
 let afterDay02 = document.querySelector(".AfterDay02");
 let afterDay03 = document.querySelector(".AfterDay03");
-let tabDays = document.querySelectorAll(".tab_days")
+let tabDays = document.querySelectorAll(".tab_days");
+
+console.log(tabDays)
 
 
 function renderWeatherCard()
@@ -36,8 +38,13 @@ function renderWeatherCard()
       {
         error_message.style.display = "block";
         error_message.innerHTML = `
-          <h3 id="error_message ">${ErrorMessage}</h3>
+          <h3>${ErrorMessage}</h3>
         `
+      }
+
+      function hideError()
+      {
+        error_message.style.display = "none";
       }
 
     function handleSearch()
@@ -77,7 +84,7 @@ function renderWeatherCard()
         async function getWeatherData(city)
         {
             try {
-                let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},PK&appid=${api_key}&units=metric`);
+                let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}&units=metric`);
                 
                 if(!res.ok)
                 {
@@ -85,15 +92,10 @@ function renderWeatherCard()
                 }
 
                 let data = await res.json()
-                
-                //TESTING ------->
+              
+                hideError()
 
                 console.log(data)
-
-                // ------------>
-
-                error_message.style.display = "none";
-
                 
                  temp_box.innerHTML =
                     `
@@ -110,23 +112,33 @@ function renderWeatherCard()
                     `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly,alerts&appid=${api_key}&units=metric`
                 )
 
+
+                if(!forcastRes.ok) throw new Error("Forecast API Error")
+
                 let forecastData = await forcastRes.json();
+
+
+                // -------------->
+                console.log(forecastData)
+                // -------------->
 
                 afterDay01.innerHTML = Math.round(forecastData.daily[1].temp.day);
                 afterDay02.innerHTML = Math.round(forecastData.daily[2].temp.day);
                 afterDay03.innerHTML = Math.round(forecastData.daily[3].temp.day);
 
                 let today = new Date();
+                let days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
                 for(let i = 0 ; i < 3 ; i++)
                 {
                     let dayIndex = (today.getDay() + i + 1) % 7 ;
-                    tabDays[i].innerHTML =  ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][dayIndex]
+                    tabDays[i].innerHTML =  days[dayIndex]
                 }
 
        
             }
             catch(error)
             {
+               console.log(error)
                renderError("City Not Found!")
             }
         }
