@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testing</title>
+  </head>
+  <body>
+    <section class="details">
+      <div class="history">
+        <div class="tabs">
+          <div class="AfterDay01 tab_degree">35</div>
+          <div class="tab_days"></div>
+        </div>
+        <div class="tabs">
+          <div class="AfterDay02 tab_degree">35</div>
+          <div class="tab_days"></div>
+        </div>
+        <div class="tabs">
+          <div class="AfterDay03 tab_degree">35</div>
+          <div class="tab_days"></div>
+        </div>
+      </div>
+    </section>
+    <script>
+
+      let today = new Date();
+      let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    //   for (let i = 0; i < 3; i++) {
+    //     let dayIndex = (today.getDay() + i + 1) % 7;
+    //     tabDays[i].innerHTML = days[dayIndex];
+    //   }
+      let tabs = document.querySelectorAll(".tab_days");
+
+      console.log(tabs)
+
+      for (let i = 0; i < 3; i++) {
+         let dayIndex= (today.getDay()+i+1)%7;
+         tabs[i].innerText = days[dayIndex]
+      }
+      
+
+    </script>
+  </body>
+</html>

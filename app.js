@@ -5,26 +5,34 @@ let default_city = "Karachi";
 let temp_box = document.querySelector(".temp_box")
 
 const api_key = "711bc8780457bd2f4156dc13cd40d08a";
-// let latitude;
-// let longitude;
 
 let search_btn = document.getElementById("input_search_btn");
 let error_message = document.querySelector(".city_not_found_err");
 
 
-let afterDay01 = document.querySelector(".AfterDay01");
-let afterDay02 = document.querySelector(".AfterDay02");
-let afterDay03 = document.querySelector(".AfterDay03");
-let tabDays = document.querySelectorAll(".tab_days");
+// let afterDay01 = document.querySelector(".AfterDay01");
+// let afterDay02 = document.querySelector(".AfterDay02");
+// let afterDay03 = document.querySelector(".AfterDay03");
 
-console.log(tabDays)
+let tab_days = document.querySelectorAll(".tab_days")
+
+let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+let today = new Date();
+    for(let i = 0 ; i < 3 ; i++)
+{
+    let dayIndex = (today.getDay()+i+1)%7;
+    tab_days[i].innerText = days[dayIndex]
+    console.log(tab_days.innerText)
+}
+
+
 
 
 function renderWeatherCard()
 {
 
-    
-
+    // console.log(today)  
 
     search_btn.addEventListener("click", handleSearch);
 
@@ -105,34 +113,28 @@ function renderWeatherCard()
                 <div class="humidity">Humidity <span>${data.main.humidity}%</span></div>
                     `
 
-                let lat = data.coord.lat;
-                let lon = data.coord.lon;
+                // let lat = data.coord.lat;
+                // let lon = data.coord.lon;
 
-                let forcastRes = await fetch(
-                    `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly,alerts&appid=${api_key}&units=metric`
-                )
-
-
-                if(!forcastRes.ok) throw new Error("Forecast API Error")
-
-                let forecastData = await forcastRes.json();
+                // let forcastRes = await fetch(
+                //     `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly,alerts&appid=${api_key}&units=metric`
+                // )
 
 
+                // if(!forcastRes.ok) throw new Error("Forecast API Error")
+
+                // let forecastData = await forcastRes.json();
+
+
+                // -----Testing--------->
+                // console.log(forecastData)
                 // -------------->
-                console.log(forecastData)
-                // -------------->
 
-                afterDay01.innerHTML = Math.round(forecastData.daily[1].temp.day);
-                afterDay02.innerHTML = Math.round(forecastData.daily[2].temp.day);
-                afterDay03.innerHTML = Math.round(forecastData.daily[3].temp.day);
+                // afterDay01.innerHTML = Math.round(forecastData.daily[1].temp.day);
+                // afterDay02.innerHTML = Math.round(forecastData.daily[2].temp.day);
+                // afterDay03.innerHTML = Math.round(forecastData.daily[3].temp.day);
 
-                let today = new Date();
-                let days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-                for(let i = 0 ; i < 3 ; i++)
-                {
-                    let dayIndex = (today.getDay() + i + 1) % 7 ;
-                    tabDays[i].innerHTML =  days[dayIndex]
-                }
+                
 
        
             }
