@@ -21,7 +21,7 @@
 .weather_app 
 {
     width: 450px;
-    /* height: auto; */
+    height: 350px;
     display: flex;
     flex-flow: column;
     background-color: #8CBACE;
@@ -29,6 +29,7 @@
     gap:20px;
     border-radius: 8px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    background-image: url('assets/Background_01.jpg');
 }
 .weather_header
  {
@@ -104,7 +105,20 @@
     background-color:#D9D9D9 ;
     border: 1px solid white;
     border-radius: 4px;
+    
     /* gap:8px;             spaceing */
+    /* background-image: url('assets/diff_Seasong.jpg'); */
+    /* background-position: 0px 0px; */   /*Summer*/
+    /* background-position: 235px 0px; */   /*Night_clear*/
+    /* background-position: -245px 0px; */  /*Rain*/
+
+    /* ---------> */
+    /* background-position: 0px -167px;   cloud */
+    /* background-position: 235px -167px;   ThunderStorm */
+    /* background-size: 720px 370px; Sunny */
+    /* background-position: -196px -167px;    */
+
+    text-shadow: 1px 1px 2px white;
 
  }
  .calender_box 
@@ -119,10 +133,12 @@
 .temp ,.day 
 {
     font-size: 60px;
+    text-shadow: 1px 1px 2px white;
 }
 .clear , .month 
 {
     font-size: 25px;
+
 }
 .city_name , .year 
 {
@@ -184,4 +200,10 @@
 #deg-symbol 
 {
     font-size: 40px;
+}
+
+.tab_days
+{
+    font-size: 18px;
+    font-weight: bold;
 }

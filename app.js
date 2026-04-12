@@ -72,7 +72,7 @@ function renderWeatherCard()
 
     function renderDate()
     {
-        const months = ["JAN","FEB","MAR","APR","MAY","JUN","JUl","AUG","SEP","OCT","NOV","DEC"]
+        const months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"]
         const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
         
         let calender = document.querySelector(".calender_box")
@@ -111,30 +111,7 @@ function renderWeatherCard()
                 <p class="clear">${data.weather[0].main}</p>
                 <div class="city_name">${data.name}</div>
                 <div class="humidity">Humidity <span>${data.main.humidity}%</span></div>
-                    `
-
-                // let lat = data.coord.lat;
-                // let lon = data.coord.lon;
-
-                // let forcastRes = await fetch(
-                //     `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly,alerts&appid=${api_key}&units=metric`
-                // )
-
-
-                // if(!forcastRes.ok) throw new Error("Forecast API Error")
-
-                // let forecastData = await forcastRes.json();
-
-
-                // -----Testing--------->
-                // console.log(forecastData)
-                // -------------->
-
-                // afterDay01.innerHTML = Math.round(forecastData.daily[1].temp.day);
-                // afterDay02.innerHTML = Math.round(forecastData.daily[2].temp.day);
-                // afterDay03.innerHTML = Math.round(forecastData.daily[3].temp.day);
-
-                
+                `
 
        
             }
